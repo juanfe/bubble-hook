@@ -1,0 +1,27 @@
+allowbubble=$(git config --bool hooks.allowbubble)
+
+if [ "$allowbubble" != "true" ]
+then
+    bold="`tput bold`"
+    normal="`tput sgr0`"
+    ERR_PRE="\n${bold}ERROR:${normal}\n\n   COMMIT REJECTED Found (${bold}"
+    ERR_POST="${normal}) references. Please remove them before commiting. Or you can allow the commits with such lines; by setting git with:\n\n > ${bold}git config hooks.allowbubble true${normal}\n\n   And check again with:\n\n > ${bold}git config hooks.allowbubble false${normal}\n"
+
+    FILES_PATTERN='\.(rb|erb)(\..+)?$'
+    FORBIDDEN='binding.pry'
+    git diff --cached --name-only | \
+        grep -E $FILES_PATTERN | \
+        GREP_COLOR='4;5;37;41' xargs grep --color --with-filename -n $FORBIDDEN && echo "$ERR_PRE $FORBIDDEN $ERR_POST" && exit 1
+
+    FILES_PATTERN='\.(js|coffee)(\..+)?$'
+    FORBIDDEN='console.log'
+    git diff --cached --name-only | \
+        grep -E $FILES_PATTERN | \
+        GREP_COLOR='4;5;37;41' xargs grep --color --with-filename -n $FORBIDDEN && echo "$ERR_PRE $FORBIDDEN $ERR_POST" && exit 1
+
+    FILES_PATTERN='\.py(\..+)?$'
+    FORBIDDEN='import pdb'
+    git diff --cached --name-only | \
+        grep -E $FILES_PATTERN | \
+        GREP_COLOR='4;5;37;41' xargs grep --color --with-filename -n $FORBIDDEN && echo "$ERR_PRE $FORBIDDEN $ERR_POST" && exit 1
+fi
