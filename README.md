@@ -1,20 +1,22 @@
+# bubble-hook
+
 Codesniffer to prevent undesired debug bubble in code of Ruby, Python or JS.
 
-Author: Soenke Ruempler <soenke@ruempler.eu>
-Website: http://github.com/s0enke/git-hooks
+Author: Juan Fernando Jaramillo Botero <juanf.jaramillo@opdevel.com>
+Website: http://github.com/juanfe/bubble-hooks
 
-REQUIREMENTS
+## REQUIREMENTS
 
  * Bash
 
-FEATURES
+## FEATURES
 
  * Check occurrence of 'binding.py' in files withe extension "*.rb" or "*.erb".
  * Check occurrence of 'console.log' in files withe extension "*.js" or "*.coffee".
  * Check occurrence of 'import pdb' in files withe extension "*.py".
 
 
-USAGE
+## USAGE
 
  * Put the script "pre-commit" into your .git/hooks directory 
  * OR: add the script to your pre-commit "chain" (you probably know what to do then)
@@ -25,7 +27,7 @@ USAGE
  * You can turn on the sniffer again by:
    > git config hooks.allowbubble false
 
-REFERENCE:
+## REFERENCE:
  [1] http://codeinthehole.com/writing/tips-for-using-a-git-pre-commit-hook/
  [2] https://github.com/s0enke/git-hooks
  [3] .git/hooks/pre-commit.sample
