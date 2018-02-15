@@ -13,7 +13,7 @@ Website: http://github.com/juanfe/bubble-hooks
 
  * Check occurrence of 'binding.py' in files withe extension "*.rb" or "*.erb".
  * Check occurrence of 'console.log' in files withe extension "*.js" or "*.coffee".
- * Check occurrence of 'import pdb' in files withe extension "*.py".
+ * Check occurrence of 'import pdb' or 'import ipdb' in files withe extension "*.py".
 
 
 ## USAGE
