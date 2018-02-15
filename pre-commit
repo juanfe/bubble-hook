@@ -23,11 +23,23 @@ then
     FORBIDDEN='import pdb'
     git diff --cached --name-only | \
         grep -E $FILES_PATTERN | \
-        GREP_COLOR='4;5;37;41' xargs grep --color --with-filename -n $FORBIDDEN && echo "$ERR_PRE $FORBIDDEN $ERR_POST" && exit 1
+        GREP_COLOR='4;5;37;41' xargs grep --color --with-filename -n "$FORBIDDEN" && echo "$ERR_PRE $FORBIDDEN $ERR_POST" && exit 1
+
+    FILES_PATTERN='\.py(\..+)?$'
+    FORBIDDEN='pdb.set_trace()'
+    git diff --cached --name-only | \
+        grep -E $FILES_PATTERN | \
+        GREP_COLOR='4;5;37;41' xargs grep --color --with-filename -n "$FORBIDDEN" && echo "$ERR_PRE $FORBIDDEN $ERR_POST" && exit 1
 
     FILES_PATTERN='\.py(\..+)?$'
     FORBIDDEN='import ipdb'
     git diff --cached --name-only | \
         grep -E $FILES_PATTERN | \
-        GREP_COLOR='4;5;37;41' xargs grep --color --with-filename -n $FORBIDDEN && echo "$ERR_PRE $FORBIDDEN $ERR_POST" && exit 1
+        GREP_COLOR='4;5;37;41' xargs grep --color --with-filename -n "$FORBIDDEN" && echo "$ERR_PRE $FORBIDDEN $ERR_POST" && exit 1
+
+    FILES_PATTERN='\.py(\..+)?$'
+    FORBIDDEN='ipdb.set_trace()'
+    git diff --cached --name-only | \
+        grep -E $FILES_PATTERN | \
+        GREP_COLOR='4;5;37;41' xargs grep --color --with-filename -n "$FORBIDDEN" && echo "$ERR_PRE $FORBIDDEN $ERR_POST" && exit 1
 fi

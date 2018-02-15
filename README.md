@@ -20,11 +20,10 @@ Website: http://github.com/juanfe/bubble-hooks
 
  * Put the script "pre-commit" into your .git/hooks directory 
  * OR: add the script to your pre-commit "chain" (you probably know what to do then)
- * Put the Config file "config" into the same dir as the "pre-commit" script and edit it to your requirements
  * Ensure that the script is executable. 
- * You can turn off the sniffer by:
+ * You can turn off the sniffer from command line by:
    > git config hooks.allowbubble true
- * You can turn on the sniffer again by:
+ * You can turn on the sniffer again from command line by:
    > git config hooks.allowbubble false
 
 ## REFERENCE:
